@@ -3,17 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<title>CreateEdit</title>
 </h:head>
 <h:body>
-	<b:navBar brand="CreateEdit" brandHref="#" inverse="true">
-		<b:navbarLinks>
-			<b:navLink value="Home" href="#"></b:navLink>
-			<b:navLink value="Link" href="#"></b:navLink>
-			<b:navLink value="Link" href="#"></b:navLink>
-		</b:navbarLinks>
-	</b:navBar>
+<ui:include src="includes/header.xhtml"/>
+<ui:include src="includes/footer.xhtml"/>
 </h:body>
 </html>
