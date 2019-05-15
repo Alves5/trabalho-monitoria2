@@ -12,12 +12,12 @@
 	<h:form enctype="multipart/form-data">
 		<p:growl id="messages" showDetail="true" />
 
-		<p:fileUpload value="#{ImagensModelo.file}" mode="simple"/>
+		<p:fileUpload value="#{imagensModelo.file}" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png\jpg)$/" />
 
 		<br />
 		<br />
 
-		<h:commandButton value="Submit" action="#{ImagensModelo.upload}" />
+		<h:commandButton value="Submit" actionListener="#{imagensModelo.upload()}" />
 	</h:form>
 </h:body>
 </html>

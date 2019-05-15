@@ -3,8 +3,8 @@ package modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import javax.annotation.ManagedBean;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.primefaces.model.UploadedFile;
 
@@ -36,7 +36,7 @@ public class ImagensModelo {
 					ps.setBinaryStream(1, file.getInputstream());
 					ps.execute();
 					con.close();
-					FacesMessage message = new FacesMessage("Exito", file.getFileName() + "Deu certo");
+					FacesMessage message = new FacesMessage("Exito", file.getFileName() + " Deu certo");
 					FacesContext.getCurrentInstance().addMessage(null, message);
 				}
 			}catch(Exception e) {
