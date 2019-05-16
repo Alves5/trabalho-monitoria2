@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Teste de Login - Cadastro</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/main.css"/>
+	<script src="js/jquery-3.1.1.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</h:head>
+<h:body>
+	<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <h:form enctype="multipart/form-data">
+    	<p:growl id="messages" showDetail="true" />
+      <p:inputText type="text" value="#{usuarioModelo.nome}" id="login" class="fadeIn second" placeholder="nome"/>
+      <p:inputText type="text" value="#{usuarioModelo.usuario}"  class="fadeIn second" placeholder="usuário"/>
+      <p:inputText type="text" value="#{usuarioModelo.senha}" id="password" class="fadeIn third" placeholder="senha"/>     
+      <p:fileUpload value="#{usuarioModelo.foto}" mode="simple" skinSimple="true"/><br/>
+      <h:commandButton class="fadeIn fourth" value="Registrar-se" action="#{usuarioModelo.cadastro()}"/>
+    </h:form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>
+</h:body>
+</html>

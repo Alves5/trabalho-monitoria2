@@ -32,8 +32,10 @@ public class ImagensModelo {
 				if(file != null) {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CMS?user=root&password=123");
-					PreparedStatement ps = con.prepareStatement("INSERT INTO imagens(imagem) VALUES(?);");
+					PreparedStatement ps = con.prepareStatement("INSERT INTO teste(imagem, nome, descrisao) VALUES(?, ?, ?);");
 					ps.setBinaryStream(1, file.getInputstream());
+					ps.setBytes(2, nome.getBytes());
+					ps.setBytes(3, descrisao.getBytes());
 					ps.execute();
 					con.close();
 					FacesMessage message = new FacesMessage("Exito", file.getFileName() + " Deu certo");
