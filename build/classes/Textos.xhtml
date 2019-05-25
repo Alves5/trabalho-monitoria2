@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<h:form>
+		<p:toolbar>
+			<p:toolbarGroup>
+				<h:commandButton value="Inserir" action="#{textosBean.adicionar()}" update="@form"/>
+				<h:commandButton value="Listar" action="#{textosBean.listarT()}" update="@form"/>
+			</p:toolbarGroup>
+		</p:toolbar>
+		<p:messages autoUpdate="true" showDetail="true"/>
+		<p:fieldset>
+			<p:panelGrid>
+				<p:outputLabel value="Titulo"/><br/>
+				<p:inputText value="#{textosBean.texto.titulo}"/><br/>
+				<p:outputLabel value="Paragrafo"/><br/>
+				<p:inputText value="#{textosBean.texto.paragrafo}"/><br/>
+			</p:panelGrid>
+			<p:dataTable value="#{textosBean.textos}" var="tex">
+				<p:column>
+					<p:commandButton value="Editar" action="#{textosBean.editarT(tex)}" update="@form"></p:commandButton>
+					<p:commandButton value="Deletar" action="#{textosBean.deletarT(tex)}" update="@form"></p:commandButton>
+				</p:column>
+				<p:column value="Titulo" sortBy="#{tex.titulo}">
+					<h:outputText value="#{tex.titulo}"/>
+				</p:column>
+				<p:column value="Paragrafo" sortBy="#{tex.paragrafo}">
+					<h:outputText value="#{tex.paragrafo}"/>
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Teste de Login - Cadastro</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	<link rel="stylesheet" href="css/materialize.min.css"/>
+	<link rel="stylesheet" href="css/main.css"/>
+	<script src="js/jquery-3.1.1.js"></script>
+	<script src="js/materialize.min.js"></script>
+	<style>
+		body{
+			background-color: #000;
+		}
+	</style>
+</h:head>
+<h:body>
+	<h:form name='meuForm' enctype='multipart/form-data'>
+		<div class='input-field'>
+			<p:inputText id='name' value="" class='validate'/>
+				<p:outputLabel for='name' value="Nome do usuário"/>
+		</div>
+		<div class='input-field'>
+			<p:password id='pwd' value="" class='validate'/>
+				<p:outputLabel for='pwd' value="Senha"/> <span id='senha'></span>
+		</div>
+		<div class='file-field input-field'>
+			<div class='btn btn-file'>
+				<span>File</span> <p:fileUpload id='perfil' value="" mode="simple"/>
+			</div>
+			<div class='file-path-wrapper'>
+				<p:inputText class='file-path validate' value=""/>
+			</div>
+		</div>
+		<div id='enviar'>
+			<h:commandButton class='btn waves-effect waves-light' value='Enviar' action="#{usuarioModelo.cadastro()}"/>
+		</div>
+	</h:form>
+</h:body>
+</html>

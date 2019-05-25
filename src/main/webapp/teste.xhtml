@@ -11,13 +11,14 @@
 <h:body>
 	<h:form enctype="multipart/form-data">
 		<p:growl id="messages" showDetail="true" />
-
-		<p:fileUpload value="#{ImagensModelo.file}" mode="simple"/>
-
-		<br />
-		<br />
-
-		<h:commandButton value="Submit" action="#{ImagensModelo.upload}" />
+		<p:outputLabel value="arquivo" for="file"/>
+		<p:fileUpload id="file" value="#{imagensModelo.file}" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png\jpg)$/" /><br/>
+		<p:outputLabel value="Nome" for="nome" />
+        <p:autoComplete id="nome" value="#{imagensModelo.nome}" /><br/>
+		<p:outputLabel value="descrisao" for="descrisao" />
+        <p:autoComplete id="descrisao" value="#{imagensModelo.descrisao}" /><br/>
+        
+		<h:commandButton value="Submit" actionListener="#{imagensModelo.upload()}" />
 	</h:form>
 </h:body>
 </html>
