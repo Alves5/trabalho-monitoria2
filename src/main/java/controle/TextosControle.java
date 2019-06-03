@@ -1,5 +1,7 @@
 package controle;
 
+
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,8 +12,11 @@ import java.util.List;
 import modelo.TextosModelo;
 
 public class TextosControle {
-	public void inserirTextos(TextosModelo tm) throws SQLException{
-		try {
+	public TextosControle() {
+		super();
+	}
+	
+	public boolean inserirTextos(TextosModelo tm) throws SQLException, ClassNotFoundException, FileNotFoundException{
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CMS?user=root&password=123");
 			PreparedStatement ps;
@@ -23,12 +28,11 @@ public class TextosControle {
 			}
 			ps.setString(1, tm.getTitulo());
 			ps.setString(2, tm.getParagrafo());
-			ps.execute();
+			int toReturn = ps.executeUpdate();
 			con.close();	
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		return toReturn > 0;
 	}
+	
 	
 	public void deletarTextos(Integer id) throws SQLException{
 		try {

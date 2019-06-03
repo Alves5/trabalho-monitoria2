@@ -1,9 +1,9 @@
 package bean;
 
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -23,7 +23,8 @@ private DataSource ds;
 private TextosModelo texto = new TextosModelo();
 private List<TextosModelo> textos = new ArrayList<>();
 
-public void adicionar(){
+
+public void adicionar() throws ClassNotFoundException, FileNotFoundException{
 	try {
 		new TextosControle().inserirTextos(texto);
 		FacesMessage message = new FacesMessage("Exito", texto.getTitulo() + " texto inserido!");

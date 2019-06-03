@@ -5,7 +5,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.Base64;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -27,7 +26,6 @@ public class ImagensModelo {
 	private UploadedFile file;
 	private String nome;
 	private String descrisao;
-	private ImagensModelo user;
 	
 	
 	public String cifrar(String texto) throws NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
@@ -66,26 +64,7 @@ public class ImagensModelo {
 	    return resultado;
 	}
 
-	public ImagensModelo buscar(int id) {
-		user = null;
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CMS?user=root&password=123");
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM teste WHERE id=?");
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			if(rs != null) {
-				user.setFile((UploadedFile) rs.getBinaryStream("imagem"));
-				user.setNome(rs.getString("nome"));
-				user.setDescrisao(rs.getString("descrisao"));
-				user.setId(rs.getInt("id"));
-			}
-			con.close();
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return user;
-	}
+
 	
 	public int getId() {
 		return id;
@@ -120,7 +99,7 @@ public class ImagensModelo {
 				FacesContext.getCurrentInstance().addMessage(null, message);
 			}
 		}
-	
+		
 	public String getNome() {
 		return nome;
 	}
@@ -133,5 +112,4 @@ public class ImagensModelo {
 	public void setDescrisao(String descrisao) {
 		this.descrisao = descrisao;
 	}
-	
 }

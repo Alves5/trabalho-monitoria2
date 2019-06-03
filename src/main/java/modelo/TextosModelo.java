@@ -4,6 +4,7 @@ public class TextosModelo {
 	private Integer id;
 	private String titulo;
 	private String paragrafo;
+	private byte[] file;
 	
 	public Integer getId() {
 		return id;
@@ -22,6 +23,12 @@ public class TextosModelo {
 	}
 	public void setParagrafo(String paragrafo) {
 		this.paragrafo = paragrafo;
+	}
+	public byte[] getFile() {
+		return file;
+	}
+	public void setFile(byte[] file) {
+		this.file = file;
 	}
 	
 }
