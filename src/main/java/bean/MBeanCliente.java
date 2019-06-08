@@ -2,121 +2,111 @@ package bean;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
+import modelo.Cliente;
+import controle.ClienteDao;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
+
+import org.primefaces.event.RowEditEvent;
 
 
 @ManagedBean(name = "mBeanCliente")
 public class MBeanCliente {
-
-	//private int id;
-	//private String nome;
-	private Part image;
-	//private List<Cliente> clientes;
+	//Para receber as fotos
+	private Part foto;
+	private Part video;
+	private Cliente cliente = new Cliente();
+	private List<Cliente> lista = new ArrayList<>();
+	
 
 	public void upload() {
 			try {
-				InputStream in = image.getInputStream();
-				File f = new File("/home/daniel/Imagens/temp/"+image.getSubmittedFileName());
+				InputStream in = foto.getInputStream();
+				File f = new File("/home/daniel/Documentos/CreateEdit/src/main/webapp/img/uploads/foto/"+foto.getSubmittedFileName());
+				InputStream in2 = video.getInputStream();
+				File f2 = new File("/home/daniel/Documentos/CreateEdit/src/main/webapp/img/uploads/video/"+video.getSubmittedFileName());
 				f.createNewFile();
+				f2.createNewFile();
 				FileOutputStream out = new FileOutputStream(f);
-				String caminho = f.toString();
+				FileOutputStream out2 = new FileOutputStream(f2);
+				String fotoString = f.toString();
+				cliente.setFotoS(fotoString.substring(51));
+				String videoString = f2.toString();
+				cliente.setVideoS(videoString.substring(51));
+				
 				byte[] buffer  = new byte[1024];
 				int lenght;
 				while((lenght=in.read(buffer)) > 0) {
 					out.write(buffer, 0, lenght);
 				}
-				out.close();
-				in.close();
 				
-				Class.forName("com.mysql.cj.jdbc.Driver");
-		        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CMS?user=root&password=123");
-		        PreparedStatement ps = con.prepareStatement("INSERT INTO cliente(image) VALUES(?);");
-		        ps.setString(1, caminho);
-		        ps.execute();
-		        ps.close();
+				byte[] buffer2  = new byte[1024];
+				int lenght2;
+				while((lenght2=in2.read(buffer2)) > 0) {
+					out2.write(buffer2, 0, lenght2);
+				}
+				out.close();
+				out2.close();
+				in.close();
+				in2.close();
+				ClienteDao clienteDao = new ClienteDao();
+				clienteDao.salvar(cliente);
+				//FacesContext.getCurrentInstance().getExternalContext().redirect("filmesForm.jsf");
+				this.buscar();
 			}catch(Exception e) {
 				System.out.println("Aqui 1"+e.getMessage());
 			}
 	}
 
-		/*public void salvar() {
-			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-		        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CMS?user=root&password=123");
-		        PreparedStatement ps = con.prepareStatement("INSERT INTO cliente(nome, image) VALUES(?, ?);");
-		        ps.setString(1, nome);
-		        ps.setBinaryStream(2, image);
-		        ps.execute();
-		        ps.close();
-			}catch(Exception e) {
-				System.out.println("Aqui 2"+e.getMessage());
-			}
-			
-		}*/
-
-	/*public void alterar(Cliente cliente) {
-		this.id = cliente.getId();
-		this.nome = cliente.getNome();
+	public void buscar() {
+		try {
+			lista = new ClienteDao().listar();
+		}catch(Exception e) {
+			System.out.println("Deu erro aqui no Bean2"+e.getMessage());
+		}
+		
+	}
+	
+	public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Edit Cancelled");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+	
+	public Part getFoto() {
+		return foto;
 	}
 
-	public Integer getId() {
-		return id;
+	public void setFoto(Part foto) {
+		this.foto = foto;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public Part getVideo() {
+		return video;
 	}
 
-	public String getNome() {
-		return nome;
+	public void setVideo(Part video) {
+		this.video = video;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-
-	public List<Cliente> getClientes() {
-		return clientes;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
+	public List<Cliente> getLista() {
+		return lista;
 	}
 
-	public String getCaminhoImagem() {
-		return caminhoImagem;
+	public void setLista(List<Cliente> lista) {
+		this.lista = lista;
 	}
-
-	public void setCaminhoImagem(String caminhoImagem) {
-		this.caminhoImagem = caminhoImagem;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}*/
-
-	public Part getImage() {
-		return image;
-	}
-
-	public void setImage(Part image) {
-		this.image = image;
-	}
+	
 }

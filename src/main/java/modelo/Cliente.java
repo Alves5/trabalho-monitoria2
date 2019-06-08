@@ -2,8 +2,11 @@ package modelo;
 public class Cliente{
 
     private Integer id;
-	private String nome;
-	private String caminhoImagem;
+	private String titulo;
+	private String descricao;
+	private String fotoS;
+	private String videoS;
+	private String genero;
 
 	public Integer getId() {
 		return id;
@@ -13,19 +16,45 @@ public class Cliente{
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
-	public String getCaminhoImagem() {
-		return caminhoImagem;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setCaminhoImagem(String caminhoImagem) {
-		this.caminhoImagem = caminhoImagem;
-}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getFotoS() {
+		return fotoS;
+	}
+
+	public void setFotoS(String fotoS) {
+		this.fotoS = fotoS;
+	}
+
+	public String getVideoS() {
+		return videoS;
+	}
+
+	public void setVideoS(String videoS) {
+		this.videoS = videoS;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	
 }

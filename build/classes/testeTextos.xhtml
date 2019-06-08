@@ -1,4 +1,4 @@
-4<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -27,7 +27,7 @@
 				<p:column>
 					<p:commandButton value="Editar" action="#{textosBean.editarT(tex)}" update="@form"></p:commandButton>
 					<p:commandButton value="Deletar" action="#{textosBean.deletarT(tex)}" update="@form"></p:commandButton>
-				</p:column>
+				</p:column>	
 				<p:column value="Titulo" sortBy="#{tex.titulo}">
 					<h:outputText value="#{tex.titulo}"/>
 				</p:column>
