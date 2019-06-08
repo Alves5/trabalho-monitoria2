@@ -6,33 +6,64 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-
+<h:head>
+<script src="js/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css"/>
+<script src="js/bootstrap.min.js"></script>
+</h:head>
 <h:body>
-	<h:form>
-		<p:toolbar>
-			<p:toolbarGroup>
-				<h:commandButton value="Inserir" action="#{textosBean.adicionar()}" update="@form"/>
-				<h:commandButton value="Listar" action="#{textosBean.listarT()}" update="@form"/>
-			</p:toolbarGroup>
-		</p:toolbar>
-		<p:messages autoUpdate="true" showDetail="true"/>
+	<h:form enctype="multipart/form-data">
 		<p:fieldset>
 			<p:panelGrid>
-				<p:outputLabel value="Titulo"/><br/>
-				<p:inputText value="#{textosBean.texto.titulo}"/><br/>
-				<p:outputLabel value="Paragrafo"/><br/>
-				<p:inputText value="#{textosBean.texto.paragrafo}"/><br/>
+				<p:outputLabel class="label" value="Titulo do filme"/><br/>
+					<p:inputText class="form-control" value="#{textosBean.texto.titulo}"/><br/>	
+					<p:outputLabel class="label" value="Descrição"/><br/>
+					<p:inputTextarea class="form-control" value="#{textosBean.texto.descricao}"/><br/>
+					<p:outputLabel class="label" value="Gênero"/><br/>
+					  <h:selectOneMenu class="custom-select" value="#{textosBean.texto.genero}">
+			            <f:selectItem itemLabel="Select One" itemValue="" />
+			            <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+			            <f:selectItem itemLabel="PS4" itemValue="PS4" />
+			            <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+			        </h:selectOneMenu><br/><br/>
+			        <div class="custom-file">
+    						<h:inputFile class="custom-file-input" value="#{textosBean.foto}" id="validatedCustomFile" accept="image/*"/>
+    						<label class="custom-file-label" for="validatedCustomFile">Foto do filme</label>
+  					</div><br/><br/>
+			         <div class="custom-file">
+    						<h:inputFile class="custom-file-input" value="#{textosBean.video}" id="validatedCustomFileVideo" />
+    						<label class="custom-file-label" for="validatedCustomFileVideo">Video do filme</label>
+  					</div><br/><br/>
 			</p:panelGrid>
-			<p:dataTable value="#{textosBean.textos}" var="tex">
+			<p:toolbar>
+				<p:toolbarGroup>
+					<h:commandButton value="Inserir" action="#{textosBean.adicionar()}" update="@form"/>
+					<h:commandButton value="Listar" action="#{textosBean.listarT()}" update="@form"/>
+				</p:toolbarGroup>
+			</p:toolbar><br/><br/>
+		<p:messages autoUpdate="true" showDetail="true"/>
+			<p:dataTable value="#{textosBean.textos}" var="tex" class="table table-hover table-dark">
 				<p:column>
-					<p:commandButton value="Editar" action="#{textosBean.editarT(tex)}" update="@form"></p:commandButton>
-					<p:commandButton value="Deletar" action="#{textosBean.deletarT(tex)}" update="@form"></p:commandButton>
+					<h:commandButton value="Editar" action="#{textosBean.editarT(tex)}" update="@form"></h:commandButton>
+					<h:commandButton value="Deletar" action="#{textosBean.deletarT(tex)}" update="@form"></h:commandButton>
 				</p:column>	
-				<p:column value="Titulo" sortBy="#{tex.titulo}">
+				<p:column value="Id" headerText="Id" sortBy="#{tex.id}">
+					<h:outputText value="#{tex.id}"/>
+				</p:column>
+				<p:column value="Titulo" headerText="Titulo" sortBy="#{tex.titulo}">
 					<h:outputText value="#{tex.titulo}"/>
 				</p:column>
-				<p:column value="Paragrafo" sortBy="#{tex.paragrafo}">
-					<h:outputText value="#{tex.paragrafo}"/>
+				<p:column value="Descrição" headerText="Descrição" sortBy="#{tex.descricao}">
+					<h:outputText value="#{tex.descricao}"/>
+				</p:column>
+				<p:column value="Gênero" headerText="Gênero" sortBy="#{tex.genero}">
+					<h:outputText value="#{tex.genero}"/>
+				</p:column>
+				<p:column value="Foto" headerText="Foto" sortBy="#{tex.fotoS}">
+					<img src="#{tex.fotoS}" style="width: 80px; height: 80px;"/>
+				</p:column>
+				<p:column value="Video" headerText="Video" sortBy="#{tex.videoS}">
+					<h:outputText value="#{tex.videoS}"/>
 				</p:column>
 			</p:dataTable>
 		</p:fieldset>

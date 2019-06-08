@@ -6,13 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Cliente;
 import controle.ClienteDao;
-
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
 
-import org.primefaces.event.RowEditEvent;
+
 
 
 @ManagedBean(name = "mBeanCliente")
@@ -56,8 +53,6 @@ public class MBeanCliente {
 				in2.close();
 				ClienteDao clienteDao = new ClienteDao();
 				clienteDao.salvar(cliente);
-				//FacesContext.getCurrentInstance().getExternalContext().redirect("filmesForm.jsf");
-				this.buscar();
 			}catch(Exception e) {
 				System.out.println("Aqui 1"+e.getMessage());
 			}
@@ -69,13 +64,11 @@ public class MBeanCliente {
 		}catch(Exception e) {
 			System.out.println("Deu erro aqui no Bean2"+e.getMessage());
 		}
-		
 	}
 	
-	public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edit Cancelled");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
+	public void editarT(Cliente cl) {
+		cliente = cl;
+	}
 	
 	public Part getFoto() {
 		return foto;
