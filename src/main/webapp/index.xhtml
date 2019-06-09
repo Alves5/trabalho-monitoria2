@@ -95,29 +95,33 @@
 	<!-- Blog section -->
 	<section class="blog-section spad">
 		<div class="container">
-			<div class="row">
+			<div class="row ">
 				<div class="col-xl-9 col-lg-8 col-md-7">
 					<div class="section-title text-white">
 						<h2>Gênero</h2>
 					</div>
 					<ul class="blog-filter">
-						<li><a href="#">Ação</a></li>
-						<li><a href="#">Comédia</a></li>
-						<li><a href="#">Romance</a></li>
-						<li><a href="#">Terror</a></li>
+						<li><a href="Filmes.jsf">Ação</a></li>
+						<li><a href="Filmes.jsf">Comédia</a></li>
+						<li><a href="Filmes.jsf">Romance</a></li>
+						<li><a href="Filmes.jsf">Terror</a></li>
 					</ul>
 					<!-- Blog item -->
 					<p:repeat var="card" value="#{textosBean.tres}">
-						<div class="blog-item">
-							<div class="blog-thumb">
-								<img src="#{card.fotoS}" style="width: 346px; height: 362px;"/>
-							</div>
-							<div class="blog-text text-box text-white">
-								<h3>#{card.titulo}</h3>
-								<p>#{card.descricao}</p>
-								<a href="#" class="read-more">View trailer</a>
-							</div>
-						</div>
+					<div class="card mb-3 " style="max-width: 540px; background: linear-gradient(45deg, #501755 0%, #2d1854 100%);">
+  						<div class="row no-gutters">
+    						<div class="col-md-4">
+      							<img src="#{card.fotoS}" class="card-img" style="height: 240px;"/>
+    						</div>
+    						<div class="col-md-8">
+      							<div class="card-body">
+        							<h5 class="card-title">#{card.titulo}</h5>		
+        							<p class="card-text">#{card.descricao}</p>
+        							<p class="card-text"><small class="text-muted">#{card.genero}</small></p>
+      							</div>
+    						</div>
+  						</div>
+					</div>
 					</p:repeat>
 				</div>
 				<div class="col-xl-3 col-lg-4 col-md-5 sidebar">
@@ -126,12 +130,12 @@
 							<div class="categories-widget">
 								<h4 class="widget-title">gênero</h4>
 								<ul>
-									<li><a href="">Ficção científica</a></li>
-									<li><a href="">Documentário</a></li>
-									<li><a href="">Romance</a></li>
-									<li><a href="">Terror</a></li>
-									<li><a href="">Comédia</a></li>
-									<li><a href="">Ação</a></li>
+									<li><a href="Filmes.jsf">Ficção científica</a></li>
+									<li><a href="Filmes.jsf">Documentário</a></li>
+									<li><a href="Filmes.jsf">Romance</a></li>
+									<li><a href="Filmes.jsf">Terror</a></li>
+									<li><a href="Filmes.jsf">Comédia</a></li>
+									<li><a href="Filmes.jsf">Ação</a></li>
 								</ul>
 							</div>
 						</div>
