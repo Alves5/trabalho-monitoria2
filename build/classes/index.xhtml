@@ -47,15 +47,19 @@
 		<div class="header-warp">
 			<div class="header-social d-flex justify-content-end">
 				<p>Redes sociais:</p>
-				<a href="#"><i class="fa fa-pinterest"></i></a>
-				<a href="#"><i class="fa fa-facebook"></i></a>
-				<a href="#"><i class="fa fa-twitter"></i></a>
+				<p:repeat var="key" value="#{confBean.lista}">
+					<a href="#{key.pint}" target="_black"><i class="fa fa-pinterest"></i></a>
+					<a href="#{key.face}" target="_black"><i class="fa fa-facebook"></i></a>
+					<a href="#{key.twi}" target="_black"><i class="fa fa-twitter"></i></a>
+				</p:repeat>
 			</div>
 			<div class="header-bar-warp d-flex">
 				<!-- site logo -->
-				<a href="index.jsf" class="site-logo">
-					<img src="img/logo.png" alt=""/>
-				</a>
+				<p:repeat var="logo" value="#{confBean.lista}">
+					<a href="index.jsf" class="site-logo">
+						<img src="#{logo.logoSite}" style="width: 172px; height: 41px;"/>
+					</a>
+				</p:repeat>
 				<nav class="top-nav-area w-100">
 					<div class="user-panel">
 						<a href="Logar.jsf">Logar</a>
@@ -103,85 +107,21 @@
 						<li><a href="#">Terror</a></li>
 					</ul>
 					<!-- Blog item -->
-					<div class="blog-item">
-						<div class="blog-thumb">
-							<img src="img/blog/1.jpg" alt=""/>
+					<p:repeat var="card" value="#{textosBean.tres}">
+						<div class="blog-item">
+							<div class="blog-thumb">
+								<img src="#{card.fotoS}" style="width: 346px; height: 362px;"/>
+							</div>
+							<div class="blog-text text-box text-white">
+								<h3>#{card.titulo}</h3>
+								<p>#{card.descricao}</p>
+								<a href="#" class="read-more">View trailer</a>
+							</div>
 						</div>
-						<div class="blog-text text-box text-white">
-							<div class="top-meta">11.11.18  /  in <a href="">Filmes</a></div>
-							<h3>The best online game is out now!</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius-mod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Lorem ipsum dolor sit amet, consecte-tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.....</p>
-							<a href="#" class="read-more">View trailer  <img src="img/icons/double-arrow.png" alt="#"/></a>
-						</div>
-					</div>
-					<!-- Blog item -->
-					<div class="blog-item">
-						<div class="blog-thumb">
-							<img src="./img/blog/2.jpg" alt=""/>
-						</div>
-						<div class="blog-text text-box text-white">
-							<div class="top-meta">11.11.18  /  in <a href="">Filmes</a></div>
-							<h3>The best online game is out now!</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius-mod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Lorem ipsum dolor sit amet, consecte-tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.....</p>
-							<a href="#" class="read-more">View trailer  <img src="img/icons/double-arrow.png" alt="#"/></a>
-						</div>
-					</div>
-					<!-- Blog item -->
-					<div class="blog-item">
-						<div class="blog-thumb">
-							<img src="./img/blog/3.jpg" alt=""/>
-						</div>
-						<div class="blog-text text-box text-white">
-							<div class="top-meta">11.11.18  /  in <a href="">Filmes</a></div>
-							<h3>The best online game is out now!</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius-mod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Lorem ipsum dolor sit amet, consecte-tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.....</p>
-							<a href="#" class="read-more">View trailer  <img src="img/icons/double-arrow.png" alt="#"/></a>
-						</div>
-					</div>
+					</p:repeat>
 				</div>
 				<div class="col-xl-3 col-lg-4 col-md-5 sidebar">
 					<div id="stickySidebar">
-						<div class="widget-item">
-							<h4 class="widget-title">Top's</h4>
-							<div class="trending-widget">
-								<div class="tw-item">
-									<div class="tw-thumb">
-										<img src="./img/blog-widget/1.jpg" alt="#"/>
-									</div>
-									<div class="tw-text">
-										<div class="tw-meta">11.11.18  /  in <a href="">Filmes</a></div>
-										<h5>The best online game is out now!</h5>
-									</div>
-								</div>
-								<div class="tw-item">
-									<div class="tw-thumb">
-										<img src="./img/blog-widget/2.jpg" alt="#"/>
-									</div>
-									<div class="tw-text">
-										<div class="tw-meta">11.11.18  /  in <a href="">Filmes</a></div>
-										<h5>The best online game is out now!</h5>
-									</div>
-								</div>
-								<div class="tw-item">
-									<div class="tw-thumb">
-										<img src="./img/blog-widget/3.jpg" alt="#"/>
-									</div>
-									<div class="tw-text">
-										<div class="tw-meta">11.11.18  /  in <a href="">Filmes</a></div>
-										<h5>The best online game is out now!</h5>
-									</div>
-								</div>
-								<div class="tw-item">
-									<div class="tw-thumb">
-										<img src="./img/blog-widget/4.jpg" alt="#"/>
-									</div>
-									<div class="tw-text">
-										<div class="tw-meta">11.11.18  /  in <a href="">Filmes</a></div>
-										<h5>The best online game is out now!</h5>
-									</div>
-								</div>
-							</div>
-						</div>
 						<div class="widget-item">
 							<div class="categories-widget">
 								<h4 class="widget-title">gênero</h4>
@@ -202,20 +142,7 @@
 	</section>
 	<!-- Blog section end -->
 
-
-	<!-- Intro section -->
-	<section class="intro-video-section set-bg d-flex align-items-end " data-setbg="img/promo-bg.jpg">
-		<a href="#" class="video-play-btn video-popup"><img src="img/icons/solid-right-arrow.png" alt="#"/></a>
-		<div class="container">
-			<div class="video-text">
-				<h2>Promo video of the game</h2>
-			</div>
-		</div>
-	</section>
-	<!-- Intro section end -->
-
-
-	<!-- Featured section -->
+	<!-- Featured section
 	<section class="featured-section">
 		<div class="featured-bg set-bg" data-setbg="img/featured-bg.jpg"></div>
 		<div class="featured-box">
@@ -226,23 +153,20 @@
 				<a href="#" class="read-more">View trailer  <img src="img/icons/double-arrow.png" alt="#"/></a>
 			</div>
 		</div>
-	</section>
+	</section>-->
 
 	<!-- Footer section -->
 	<footer class="footer-section">
 		<div class="container">
-			<a href="#" class="footer-logo">
-				<img src="img/logo.png" alt=""/>
-			</a>
+			<p:repeat var="lof" value="#{confBean.lista}">
+				<a href="#" class="footer-logo">
+					<img src="#{lof.logoSite}" style="width: 172px; height: 41px;"/>
+				</a>
+			</p:repeat>
 			<ul class="main-menu footer-menu">
 				<li><a href="index.jsf">Home</a></li>
 				<li><a href="Filmes.jsf">Filmes</a></li>
 			</ul>
-			<div class="footer-social d-flex justify-content-center">
-				<a href="#"><i class="fa fa-pinterest"></i></a>
-				<a href="#"><i class="fa fa-facebook"></i></a>
-				<a href="#"><i class="fa fa-twitter"></i></a>
-			</div>
 			<div class="copyright"><a href="">Colorlib</a> 2019 @ usuário</div>
 		</div>
 	</footer>

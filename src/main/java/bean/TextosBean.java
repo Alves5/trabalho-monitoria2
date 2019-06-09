@@ -29,6 +29,7 @@ private Part video;
 private TextosModelo texto = new TextosModelo();
 private List<TextosModelo> textos = new ArrayList<>();
 List<TextosModelo> textos2 = new TextosControle().buscar();
+List<TextosModelo> tres = new TextosControle().pegar();
 
 
 public void adicionar() throws ClassNotFoundException, IOException{
@@ -62,7 +63,7 @@ public void adicionar() throws ClassNotFoundException, IOException{
 		in.close();
 		in2.close();
 		new TextosControle().inserirTextos(texto);
-		FacesMessage message = new FacesMessage("Exito", texto.getTitulo() + " texto inserido!");
+		FacesMessage message = new FacesMessage("Exito", texto.getTitulo() + " filme inserido! Agora faça a listagem.");
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	} catch (SQLException e) {
 		FacesMessage message = new FacesMessage("ERRO AO INSERIR.");
@@ -114,6 +115,12 @@ public List<TextosModelo> getTextos2(){
 }
 public void setTextos2(List<TextosModelo> textos2) {
 	this.textos2 = textos2;
+}
+public List<TextosModelo> getTres() {
+	return tres;
+}
+public void setTres(List<TextosModelo> tres) {
+	this.tres = tres;
 }
 public Part getFoto() {
 	return foto;

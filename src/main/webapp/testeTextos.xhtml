@@ -7,6 +7,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
+	<title>Form - Filmes</title>
 <script src="js/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css"/>
 <script src="js/bootstrap.min.js"></script>
@@ -15,37 +16,41 @@
 	<h:form enctype="multipart/form-data">
 		<p:fieldset>
 			<p:panelGrid>
-				<p:outputLabel class="label" value="Titulo do filme"/><br/>
+				<p:outputLabel class="label" value="Titulo do filme *"/><br/>
 					<p:inputText class="form-control" value="#{textosBean.texto.titulo}"/><br/>	
-					<p:outputLabel class="label" value="Descrição"/><br/>
+					<p:outputLabel class="label" value="Descrição *"/><br/>
 					<p:inputTextarea class="form-control" value="#{textosBean.texto.descricao}"/><br/>
-					<p:outputLabel class="label" value="Gênero"/><br/>
+					<p:outputLabel class="label" value="Gênero *"/><br/>
 					  <h:selectOneMenu class="custom-select" value="#{textosBean.texto.genero}">
 			            <f:selectItem itemLabel="Select One" itemValue="" />
-			            <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-			            <f:selectItem itemLabel="PS4" itemValue="PS4" />
-			            <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+			            <f:selectItem itemLabel="Cómedia" itemValue="Cómedia" />
+			            <f:selectItem itemLabel="Terror" itemValue="Terror" />
+			            <f:selectItem itemLabel="Ficção C." itemValue="Ficção C." />
+			            <f:selectItem itemLabel="Romance" itemValue="Romance" />
+			            <f:selectItem itemLabel="Ação" itemValue="Ação" />
+			            <f:selectItem itemLabel="Drama" itemValue="Drama" />
+			            <f:selectItem itemLabel="Documentário" itemValue="Documentário" />
 			        </h:selectOneMenu><br/><br/>
 			        <div class="custom-file">
     						<h:inputFile class="custom-file-input" value="#{textosBean.foto}" id="validatedCustomFile" accept="image/*"/>
-    						<label class="custom-file-label" for="validatedCustomFile">Foto do filme</label>
+    						<label class="custom-file-label" for="validatedCustomFile">Foto do filme *</label>
   					</div><br/><br/>
 			         <div class="custom-file">
     						<h:inputFile class="custom-file-input" value="#{textosBean.video}" id="validatedCustomFileVideo" />
-    						<label class="custom-file-label" for="validatedCustomFileVideo">Video do filme</label>
+    						<label class="custom-file-label" for="validatedCustomFileVideo">Video do filme *</label>
   					</div><br/><br/>
 			</p:panelGrid>
 			<p:toolbar>
 				<p:toolbarGroup>
-					<h:commandButton value="Inserir" action="#{textosBean.adicionar()}" update="@form"/>
+					<h:commandButton value="Inserir" action="#{textosBean.adicionar()}" update="@form" icon="pi pi-check"/>
 					<h:commandButton value="Listar" action="#{textosBean.listarT()}" update="@form"/>
 				</p:toolbarGroup>
 			</p:toolbar><br/><br/>
 		<p:messages autoUpdate="true" showDetail="true"/>
-			<p:dataTable value="#{textosBean.textos}" var="tex" class="table table-hover table-dark">
+			<p:dataTable value="#{textosBean.textos}" var="tex" class="table table-hover table-dark" reflow="true" rows="5" paginator="true">
 				<p:column>
-					<h:commandButton value="Editar" action="#{textosBean.editarT(tex)}" update="@form"></h:commandButton>
-					<h:commandButton value="Deletar" action="#{textosBean.deletarT(tex)}" update="@form"></h:commandButton>
+					<h:commandButton class="btn btn-success" value="Editar" action="#{textosBean.editarT(tex)}" update="@form"></h:commandButton>
+					<h:commandButton class="btn btn-danger" value="Deletar" action="#{textosBean.deletarT(tex)}" update="@form"></h:commandButton>
 				</p:column>	
 				<p:column value="Id" headerText="Id" sortBy="#{tex.id}">
 					<h:outputText value="#{tex.id}"/>

@@ -76,4 +76,30 @@ public class TextosControle {
     		return null;
     	}
 	}
+	
+	public List<TextosModelo> pegar(){
+		try {
+    		Class.forName("com.mysql.cj.jdbc.Driver");
+	        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CMS?user=root&password=123");
+	        PreparedStatement ps = con.prepareStatement("SELECT * FROM filmes WHERE (id <= 3) OR id > 3 AND id <= 6 OR id > 6 AND id <= 9;");
+	        ResultSet rs = ps.executeQuery();
+	        List<TextosModelo> lista = new ArrayList<>();
+	        if(rs != null) {
+	        	while(rs.next()) {
+	        		TextosModelo mod = new TextosModelo();
+	        		mod.setId(rs.getInt("id"));
+	        		mod.setTitulo(rs.getString("titulo"));
+	        		mod.setDescricao(rs.getString("descricao"));
+	        		mod.setFotoS(rs.getString("foto"));
+	        		mod.setVideoS(rs.getString("video"));
+	        		mod.setGenero(rs.getString("genero"));
+	        		lista.add(mod);
+	        	}
+	        }
+	        return lista;
+    	}catch(Exception e) {
+    		System.out.println("Deu erro aqui 4"+e.getMessage());
+    		return null;
+    	}
+	}
 }
