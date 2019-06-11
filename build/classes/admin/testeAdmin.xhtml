@@ -8,9 +8,9 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Página Admin</title>
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<link rel="stylesheet" href="css/bootstrap.min.css"/>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="../seguranca/js/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="../seguranca/css/bootstrap.min.css"/>
+	<script src="../seguranca/js/bootstrap.min.js"></script>
 </h:head>
 <h:body>
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -23,9 +23,14 @@
   			<li class="nav-item">
     			<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
   			</li>	
+  			<li class="nav-item">
+    			<h:form>
+    				<h:commandButton value="Logout" action="#{usuarioBean.logout()}"/>
+    			</h:form>
+  			</li>
 		</ul>
 		<div class="tab-content" id="myTabContent">
-  			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">A</div>
+  			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">#{usuarioBean.usuario.usuario}</div>
   			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">B</div>
   			<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">C</div>
 		</div>

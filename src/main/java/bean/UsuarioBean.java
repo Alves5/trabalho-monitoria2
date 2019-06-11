@@ -1,32 +1,48 @@
 package bean;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import modelo.UsuarioModelo;
 import controle.UsuarioControle;
 
 @ManagedBean
-public class UsuarioBean {
-	 
-	private UsuarioModelo modelo = new UsuarioModelo();
+@SessionScoped
+public class UsuarioBean implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
-	public void veri() throws IOException {
-		if(new UsuarioControle().verificarUser(modelo)) {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("testeTextos.jsf");
+	private UsuarioModelo usuario;
+	
+	public UsuarioBean() {
+		usuario = new UsuarioModelo();
+	}
+	
+	
+	public String veri() throws IOException {
+		if(new UsuarioControle().verificarUser(usuario)) {
+			HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+			session.setAttribute("usuario", usuario);
+			
+			return "/admin/testeAdmin?faces-redirect=true";
 		}else {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("Logar.jsf");
+			return "/seguranca/Logar?faces-redirect=true";
 		}
 	}
-
-	public UsuarioModelo getModelo() {
-		return modelo;
+	public String logout() throws IOException {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "/seguranca/Logar?faces-redirect=true";
 	}
-
-	public void setModelo(UsuarioModelo modelo) {
-		this.modelo = modelo;
+	
+	public UsuarioModelo getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(UsuarioModelo usuario) {
+		this.usuario = usuario;
 	}
 	
 }

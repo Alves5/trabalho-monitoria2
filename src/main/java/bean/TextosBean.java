@@ -35,17 +35,17 @@ List<TextosModelo> tres = new TextosControle().pegar();
 public void adicionar() throws ClassNotFoundException, IOException{
 	try {
 		InputStream in = foto.getInputStream();
-		File f = new File("/home/daniel/Documentos/CreateEdit/src/main/webapp/img/uploads/foto/"+foto.getSubmittedFileName());
+		File f = new File("/home/daniel/Documentos/CreateEdit/src/main/webapp/seguranca/img/uploads/foto/"+foto.getSubmittedFileName());
 		InputStream in2 = video.getInputStream();
-		File f2 = new File("/home/daniel/Documentos/CreateEdit/src/main/webapp/img/uploads/video/"+video.getSubmittedFileName());
+		File f2 = new File("/home/daniel/Documentos/CreateEdit/src/main/webapp/seguranca/img/uploads/video/"+video.getSubmittedFileName());
 		f.createNewFile();
 		f2.createNewFile();
 		FileOutputStream out = new FileOutputStream(f);
 		FileOutputStream out2 = new FileOutputStream(f2);
 		String fotoString = f.toString();
-		texto.setFotoS(fotoString.substring(51));
+		texto.setFotoS(fotoString.substring(61));
 		String videoString = f2.toString();
-		texto.setVideoS(videoString.substring(51));
+		texto.setVideoS(videoString.substring(61));
 		
 		byte[] buffer  = new byte[1024];
 		int lenght;

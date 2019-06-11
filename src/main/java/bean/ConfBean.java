@@ -30,9 +30,9 @@ public class ConfBean {
 			InputStream in2 = imageHL.getInputStream();
 			InputStream in3 = logo.getInputStream();
 			
-			File f = new File("/home/daniel/Documentos/CreateEdit/src/main/webapp/img/uploads/confHFL/"+imageHF.getSubmittedFileName());
-			File f2 = new File("/home/daniel/Documentos/CreateEdit/src/main/webapp/img/uploads/confHFL/"+imageHL.getSubmittedFileName());
-			File f3 = new File("/home/daniel/Documentos/CreateEdit/src/main/webapp/img/uploads/confHFL/"+logo.getSubmittedFileName());
+			File f = new File("/home/daniel/Documentos/CreateEdit/src/main/webapp/seguranca/img/uploads/confHFL/"+imageHF.getSubmittedFileName());
+			File f2 = new File("/home/daniel/Documentos/CreateEdit/src/main/webapp/seguranca/img/uploads/confHFL/"+imageHL.getSubmittedFileName());
+			File f3 = new File("/home/daniel/Documentos/CreateEdit/src/main/webapp/seguranca/img/uploads/confHFL/"+logo.getSubmittedFileName());
 			
 			f.createNewFile();
 			f2.createNewFile();
@@ -44,11 +44,11 @@ public class ConfBean {
 			
 			conf.setId(id);
 			String HFstring = f.toString();
-			conf.setImageHeaderF(HFstring.substring(51));
+			conf.setImageHeaderF(HFstring.substring(61));
 			String HLstring = f2.toString();
-			conf.setImageHeaderL(HLstring.substring(51));
+			conf.setImageHeaderL(HLstring.substring(61));
 			String logoString = f3.toString();
-			conf.setLogoSite(logoString.substring(51));
+			conf.setLogoSite(logoString.substring(61));
 			
 			byte[] buffer  = new byte[1024];
 			int lenght;

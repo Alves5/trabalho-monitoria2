@@ -2,9 +2,9 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
@@ -99,8 +99,8 @@
 			<div class="row">
 				<div class="col-lg-7 order-2 order-lg-1">
 					<h:form class="contact-form">
-						<p:inputText type="text" value="#{usuarioBean.modelo.usuario}" placeholder="Digite seu usuário"/>
-						<p:password type="password" value="#{usuarioBean.modelo.senha}" placeholder="Digite uma senha"/>
+						<p:inputText type="text" value="#{usuarioBean.usuario.usuario}" placeholder="Digite seu usuário"/>
+						<p:password type="password" value="#{usuarioBean.usuario.senha}" placeholder="Digite uma senha"/>
 						<h:commandButton class="site-btn" value="Logar" action="#{usuarioBean.veri}"/>
 					</h:form>
 				</div>

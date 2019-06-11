@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>CreateEdit - Form home</title>
+<script src="js/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<script src="js/bootstrap.min.js"></script>
+</h:head>
+<h:body>
+	<h:form enctype="multipart/form-data">
+		<p:fieldset>
+			<p:panelGrid>
+				<p:toolbar>
+					<p:toolbarGroup>
+						<h:commandButton value="Inserir" action="#{homeBean.editar()}" update="@form"/>
+					</p:toolbarGroup>
+				</p:toolbar><br/><br/>
+					<p:messages autoUpdate="true" showDetail="true"/>
+					<p:outputLabel class="label" value="Titulo do Site"/><br/>
+						<p:inputText class="form-control" value="#{homeBean.conf.titulo}"/><br/>	
+			        <div class="custom-file">
+    						<h:inputFile class="custom-file-input" value="#{homeBean.imageH}" id="validatedCustomH" accept="image/*"/>
+    						<label class="custom-file-label" for="validatedCustomH">Primeira imagem do topo da Home</label>
+  					</div><br/><br/>
+			         <div class="custom-file">
+    						<h:inputFile class="custom-file-input" value="#{homeBean.imageH2}" id="validatedCustomH2" />
+    						<label class="custom-file-label" for="validatedCustomH2">Imagem do topo de Logar</label>
+  					</div><br/><br/>
+			</p:panelGrid>
+		</p:fieldset>
+	</h:form>
+</h:body>
+</html>

@@ -1,9 +1,22 @@
 package modelo;
 
-public class UsuarioModelo {
+import java.io.Serializable;
+
+public class UsuarioModelo implements Serializable{
+	public static final long serialVersionUID = 1L;
+	
 	private int id;
 	private String usuario;
 	private String senha;
+	
+	public UsuarioModelo() {		
+	}
+	
+	public UsuarioModelo(int id, String usuario, String senha) {
+		this.id = id;
+		this.usuario = usuario;
+		this.senha = senha;
+	}
 	
 	public int getId() {
 		return id;
