@@ -1,5 +1,6 @@
 package modelo;
 
+
 public class TextosModelo {
 	 private Integer id;
 		private String titulo;
@@ -8,6 +9,7 @@ public class TextosModelo {
 		private String videoS;
 		private String genero;
 
+		
 		public Integer getId() {
 			return id;
 		}
@@ -20,7 +22,7 @@ public class TextosModelo {
 			return titulo;
 		}
 
-		public void setTitulo(String titulo) {
+		public void setTitulo(String titulo){
 			this.titulo = titulo;
 		}
 

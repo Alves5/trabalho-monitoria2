@@ -7,13 +7,11 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
-import javax.sql.DataSource;
 import modelo.TextosModelo;
 import controle.TextosControle;
 
@@ -21,8 +19,6 @@ import controle.TextosControle;
 @SessionScoped
 public class TextosBean {
 
-@Resource(name="jdbc/project")
-private DataSource ds;
 
 private Part foto;
 private Part video;
@@ -32,7 +28,7 @@ List<TextosModelo> textos2 = new TextosControle().buscar();
 List<TextosModelo> tres = new TextosControle().pegar();
 
 
-public void adicionar() throws ClassNotFoundException, IOException{
+public void adicionar() throws IOException, ClassNotFoundException {
 	try {
 		InputStream in = foto.getInputStream();
 		File f = new File("/home/daniel/Documentos/CreateEdit/src/main/webapp/seguranca/img/uploads/foto/"+foto.getSubmittedFileName());
@@ -122,6 +118,7 @@ public List<TextosModelo> getTres() {
 public void setTres(List<TextosModelo> tres) {
 	this.tres = tres;
 }
+
 public Part getFoto() {
 	return foto;
 }

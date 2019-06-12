@@ -11,22 +11,27 @@ import modelo.ConfHome;
 
 public class ConfHomeControle {
 	public boolean editar(ConfHome ch) throws SQLException, ClassNotFoundException, FileNotFoundException{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-	        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CMS?user=root&password=123");
-	        PreparedStatement ps;
-	        if(ch.getId() == null) {
-	        	ps = con.prepareStatement("INSERT INTO confHome(imageHeaderH, imageHeaderH2, titulo) VALUES(?, ?, ?);");
-	        }else {
-	        	ps = con.prepareStatement("UPDATE confHome SET imageHeaderH=?, imageHeaderH2=?, titulo=? WHERE id=?;");
-	        	ps.setInt(4, ch.getId());
-	        }
-	        ps.setString(1, ch.getImageHeaderH());
-	        ps.setString(2, ch.getImageHeaderH2());
-	        ps.setString(3, ch.getTitulo());
-	        
-	        int toReturn = ps.executeUpdate();
-	        con.close();
-	        return toReturn > 0;
+			boolean resultado = false;
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+		        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CMS?user=root&password=123");
+		        PreparedStatement ps;
+		        ps = con.prepareStatement("UPDATE confHome SET imageHeaderH=?, imageHeaderH2=?, titulo=? WHERE id=?;");
+		        int id = 1;
+		        ps.setString(1, ch.getImageHeaderH());
+		        ps.setString(2, ch.getImageHeaderH2());
+		        ps.setString(3, ch.getTitulo());
+		        ps.setInt(4, id);
+		        
+		        ps.executeUpdate();
+		        con.close();
+		        resultado = true;
+			}catch(Exception e) {
+				System.out.println("Nesse da homi"+e.getMessage());
+				resultado = false;
+			}
+			
+	        return resultado;
 	}
 	
 	public List<ConfHome> listar(){

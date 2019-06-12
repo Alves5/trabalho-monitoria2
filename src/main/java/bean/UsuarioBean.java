@@ -22,7 +22,6 @@ public class UsuarioBean implements Serializable{
 		usuario = new UsuarioModelo();
 	}
 	
-	
 	public String veri() throws IOException {
 		if(new UsuarioControle().verificarUser(usuario)) {
 			HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -37,6 +36,7 @@ public class UsuarioBean implements Serializable{
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "/seguranca/Logar?faces-redirect=true";
 	}
+	
 	
 	public UsuarioModelo getUsuario() {
 		return usuario;

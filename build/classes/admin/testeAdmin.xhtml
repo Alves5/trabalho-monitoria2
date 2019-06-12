@@ -8,31 +8,150 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Página Admin</title>
-	<script src="../seguranca/js/jquery-3.2.1.min.js"></script>
-	<link rel="stylesheet" href="../seguranca/css/bootstrap.min.css"/>
-	<script src="../seguranca/js/bootstrap.min.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<script src="js/bootstrap.min.js"></script>
 </h:head>
 <h:body>
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
   			<li class="nav-item">
-    			<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+    			<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Adicionar/Editar filme</a>
   			</li>
   			<li class="nav-item">
-    			<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+    			<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Página Filmes e Logar</a>
   			</li>	
   			<li class="nav-item">
-    			<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+    			<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Página Home</a>
   			</li>	
   			<li class="nav-item">
     			<h:form>
-    				<h:commandButton value="Logout" action="#{usuarioBean.logout()}"/>
+    				<h:commandButton class="btn btn-outline-danger" value="Logout" action="#{usuarioBean.logout()}"/>
     			</h:form>
   			</li>
 		</ul>
 		<div class="tab-content" id="myTabContent">
-  			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">#{usuarioBean.usuario.usuario}</div>
-  			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">B</div>
-  			<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">C</div>
+  			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+  				<h:form enctype="multipart/form-data">
+					<p:fieldset>
+						<p:panelGrid>
+							<p:outputLabel class="label" value="Titulo do filme *"/><br/>
+								<p:inputText class="form-control" value="#{textosBean.texto.titulo}"/><br/>	
+								<p:outputLabel class="label" value="Descrição *"/><br/>
+								<p:inputTextarea class="form-control" value="#{textosBean.texto.descricao}"/><br/>
+								<p:outputLabel class="label" value="Gênero *"/><br/>
+								  <h:selectOneMenu class="custom-select" value="#{textosBean.texto.genero}">
+						            <f:selectItem itemLabel="Select One" itemValue="" />
+						            <f:selectItem itemLabel="Cómedia" itemValue="Cómedia" />
+						            <f:selectItem itemLabel="Terror" itemValue="Terror" />
+						            <f:selectItem itemLabel="Ficção C." itemValue="Ficção C." />
+						            <f:selectItem itemLabel="Romance" itemValue="Romance" />
+						            <f:selectItem itemLabel="Ação" itemValue="Ação" />
+						            <f:selectItem itemLabel="Drama" itemValue="Drama" />
+						            <f:selectItem itemLabel="Documentário" itemValue="Documentário" />
+						        </h:selectOneMenu><br/><br/>
+						        <div class="custom-file">
+			    						<h:inputFile class="custom-file-input" value="#{textosBean.foto}" id="validatedCustomFile" accept="image/*"/>
+			    						<label class="custom-file-label" for="validatedCustomFile">Foto do filme *</label>
+			  					</div><br/><br/>
+						         <div class="custom-file">
+			    						<h:inputFile class="custom-file-input" value="#{textosBean.video}" id="validatedCustomFileVideo" />
+			    						<label class="custom-file-label" for="validatedCustomFileVideo">Video do filme *</label>
+			  					</div><br/><br/>
+						</p:panelGrid>
+						<p:toolbar>
+							<p:toolbarGroup>
+								<h:commandButton value="Inserir" action="#{textosBean.adicionar()}" update="@form" icon="pi pi-check"/>
+								<h:commandButton value="Listar" action="#{textosBean.listarT()}" update="@form"/>
+							</p:toolbarGroup>
+						</p:toolbar><br/><br/>
+					<p:messages autoUpdate="true" showDetail="true"/>
+						<p:dataTable value="#{textosBean.textos}" var="tex" class="table table-hover table-dark" reflow="true" rows="5" paginator="true">
+							<p:column>
+								<h:commandButton class="btn btn-success" value="Editar" action="#{textosBean.editarT(tex)}" update="@form"></h:commandButton>
+								<h:commandButton class="btn btn-danger" value="Deletar" action="#{textosBean.deletarT(tex)}" update="@form"></h:commandButton>
+							</p:column>	
+							<p:column value="Id" headerText="Id" sortBy="#{tex.id}">
+								<h:outputText value="#{tex.id}"/>
+							</p:column>
+							<p:column value="Titulo" headerText="Titulo" sortBy="#{tex.titulo}">
+								<h:outputText value="#{tex.titulo}"/>
+							</p:column>
+							<p:column value="Descrição" headerText="Descrição" sortBy="#{tex.descricao}">
+								<h:outputText value="#{tex.descricao}"/>
+							</p:column>
+							<p:column value="Gênero" headerText="Gênero" sortBy="#{tex.genero}">
+								<h:outputText value="#{tex.genero}"/>
+							</p:column>
+							<p:column value="Foto" headerText="Foto" sortBy="#{tex.fotoS}">
+								<h:outputText value="#{tex.fotoS}"/>
+							</p:column>
+							<p:column value="Video" headerText="Video" sortBy="#{tex.videoS}">
+								<h:outputText value="#{tex.videoS}"/>
+							</p:column>
+						</p:dataTable>
+					</p:fieldset>
+				</h:form>
+  			</div>
+  			
+  			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+  				<h:form enctype="multipart/form-data">
+					<p:fieldset>
+						<p:panelGrid>
+							<p:toolbar>
+								<p:toolbarGroup>
+									<h:commandButton value="Editar" action="#{confBean.editar()}" update="@form"/>
+								</p:toolbarGroup>
+							</p:toolbar><br/><br/>
+								<p:messages autoUpdate="true" showDetail="true"/>
+								<p:outputLabel class="label" value="Pinterst (endereço)"/><br/>
+									<p:inputText class="form-control" value="#{confBean.conf.pint}"/><br/>	
+								<p:outputLabel class="label" value="Twitter (endereço)"/><br/>
+									<p:inputText class="form-control" value="#{confBean.conf.twi}"/><br/>
+								<p:outputLabel class="label" value="Facebook (endereço)"/><br/>
+									<p:inputText class="form-control" value="#{confBean.conf.face}"/><br/>
+						        <div class="custom-file">
+			    						<h:inputFile class="custom-file-input" value="#{confBean.imageHF}" id="validatedCustomHF" accept="image/*"/>
+			    						<label class="custom-file-label" for="validatedCustomHF">Imagem do topo de Filmes</label>
+			  					</div><br/><br/>
+						         <div class="custom-file">
+			    						<h:inputFile class="custom-file-input" value="#{confBean.imageHL}" id="validatedCustomHL" />
+			    						<label class="custom-file-label" for="validatedCustomHL">Imagem do topo de Logar</label>
+			  					</div><br/><br/>
+			  					<div class="custom-file">
+			    						<h:inputFile class="custom-file-input" value="#{confBean.logo}" id="validatedCustomLogo" />
+			    						<label class="custom-file-label" for="validatedCustomLogo">Imagem logo</label>
+			  					</div><br/><br/>
+						</p:panelGrid>
+					</p:fieldset>
+				</h:form>
+  			
+  			</div>
+  			
+  			
+  			<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+  				<h:form enctype="multipart/form-data">
+					<p:fieldset>
+						<p:panelGrid>
+							<p:toolbar>
+								<p:toolbarGroup>
+									<h:commandButton value="Editar" action="#{homeBean.editar()}" update="@form"/>
+								</p:toolbarGroup>
+							</p:toolbar><br/><br/>
+								<p:messages autoUpdate="true" showDetail="true"/>
+								<p:outputLabel class="label" value="Titulo do Site"/><br/>
+									<p:inputText class="form-control" value="#{homeBean.conf.titulo}"/><br/>	
+						        <div class="custom-file">
+			    						<h:inputFile class="custom-file-input" value="#{homeBean.imageH}" id="validatedCustomH" accept="image/*"/>
+			    						<label class="custom-file-label" for="validatedCustomH">Primeira imagem do topo da Home</label>
+			  					</div><br/><br/>
+						         <div class="custom-file">
+			    						<h:inputFile class="custom-file-input" value="#{homeBean.imageH2}" id="validatedCustomH2" />
+			    						<label class="custom-file-label" for="validatedCustomH2">Imagem do topo de Logar</label>
+			  					</div><br/><br/>
+						</p:panelGrid>
+					</p:fieldset>
+				</h:form>
+  			</div>
 		</div>
 </h:body>
 </html>

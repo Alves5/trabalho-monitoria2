@@ -16,6 +16,8 @@ public class TextosControle {
 		super();
 	}
 	
+	Encriptacao enc = new Encriptacao();
+	
 	public boolean inserirTextos(TextosModelo tm) throws SQLException, ClassNotFoundException, FileNotFoundException{
 		Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CMS?user=root&password=123");
@@ -27,8 +29,8 @@ public class TextosControle {
         	ps.setInt(6, tm.getId());
         }
         	
-        ps.setString(1, tm.getTitulo());
-        ps.setString(2, tm.getDescricao());
+        ps.setString(1, enc.encrip(tm.getTitulo()));
+        ps.setString(2, enc.encrip(tm.getDescricao()));
         ps.setString(3, tm.getFotoS());
         ps.setString(4, tm.getVideoS());
         ps.setString(5, tm.getGenero());
@@ -62,8 +64,8 @@ public class TextosControle {
 	        	while(rs.next()) {
 	        		TextosModelo mod = new TextosModelo();
 	        		mod.setId(rs.getInt("id"));
-	        		mod.setTitulo(rs.getString("titulo"));
-	        		mod.setDescricao(rs.getString("descricao"));
+	        		mod.setTitulo(enc.descrip(rs.getString("titulo")));
+	        		mod.setDescricao(enc.descrip(rs.getString("descricao")));
 	        		mod.setFotoS(rs.getString("foto"));
 	        		mod.setVideoS(rs.getString("video"));
 	        		mod.setGenero(rs.getString("genero"));
@@ -81,15 +83,15 @@ public class TextosControle {
 		try {
     		Class.forName("com.mysql.cj.jdbc.Driver");
 	        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CMS?user=root&password=123");
-	        PreparedStatement ps = con.prepareStatement("SELECT * FROM filmes WHERE (id <= 3) OR id > 3 AND id <= 6 OR id > 6 AND id <= 9;");
+	        PreparedStatement ps = con.prepareStatement("SELECT * FROM filmes WHERE id IN (1, 2, 3);");
 	        ResultSet rs = ps.executeQuery();
 	        List<TextosModelo> lista = new ArrayList<>();
 	        if(rs != null) {
 	        	while(rs.next()) {
 	        		TextosModelo mod = new TextosModelo();
 	        		mod.setId(rs.getInt("id"));
-	        		mod.setTitulo(rs.getString("titulo"));
-	        		mod.setDescricao(rs.getString("descricao"));
+	        		mod.setTitulo(enc.descrip(rs.getString("titulo")));
+	        		mod.setDescricao(enc.descrip(rs.getString("descricao")));
 	        		mod.setFotoS(rs.getString("foto"));
 	        		mod.setVideoS(rs.getString("video"));
 	        		mod.setGenero(rs.getString("genero"));
@@ -102,4 +104,5 @@ public class TextosControle {
     		return null;
     	}
 	}
+
 }
